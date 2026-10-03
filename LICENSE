@@ -1,0 +1,53 @@
+FreedomControl Source-Available Non-Commercial License v1.0
+
+Copyright (c) 2026 莱茵多特
+
+Permission is granted, free of charge, to any person obtaining a copy of the
+FreedomControl source code and associated documentation (the "Software"), to:
+
+1. use the Software for personal, educational, research, and non-commercial purposes;
+2. inspect, study, modify, and create derivative works of the Software;
+3. fork the Software and publish modified source code;
+4. redistribute the original or modified Software free of charge.
+
+These permissions are subject to all of the following conditions:
+
+A. NO SALE OR PAID REDISTRIBUTION
+The Software, modified versions, forks, compiled binaries, repackaged versions,
+download access, or access keys may not be sold, sublicensed for a fee, rented,
+licensed for a fee, or otherwise commercially redistributed.
+
+B. NO PAID BUNDLES OR PAYWALLS
+The Software may not be included as paid content in a paid modpack, subscription,
+membership, paywall, paid download, paid service, or other commercial bundle.
+
+C. ATTRIBUTION
+Redistributions of the Software or substantial portions of it must retain this
+license, the copyright notice, and attribution to the original author:
+"莱茵多特".
+Modified versions must clearly state that they have been modified and must not
+misrepresent themselves as an official FreedomControl release.
+
+D. FREE FORKS ARE WELCOME
+Forking, learning from, modifying, and freely sharing the Software are explicitly
+permitted and encouraged, provided the conditions above are followed.
+
+E. THIRD-PARTY MATERIAL
+This license applies only to original FreedomControl code and documentation for
+which the copyright holder has the right to license. SKSE, CommonLibSSE-NG,
+ImGui, fmt, spdlog, nlohmann/json, Bethesda assets, game files, and other
+third-party components remain governed by their own licenses and terms.
+
+F. NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY,
+WHETHER IN CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+This license intentionally restricts commercial redistribution and therefore is
+a source-available license rather than an OSI-approved open-source license.
+
+Author: 莱茵多特
+Bilibili: https://space.bilibili.com/1329692237
