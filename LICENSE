@@ -1,36 +1,66 @@
-FreedomControl 源码公开・非商业再分发许可 v1.0
-FreedomControl Source-Available Non-Commercial License v1.0
+FreedomControl Source-Available Non-Commercial License v1.1
+FreedomControl 源码公开・非商业许可 v1.1
 
 Copyright (c) 2026 莱茵多特
 
-允许免费：
-1. 使用、阅读、研究和学习源码；
-2. Fork、修改、重构和制作衍生版本；
-3. 免费公开或分发原版、修改版源码及二进制；
-4. 提交 Pull Request 或建立独立免费分支。
+中文条款
+========
+
+在遵守以下条件的前提下，任何人均可免费：
+
+1. 使用、阅读、研究和学习 FreedomControl 源码；
+2. Fork、修改、重构并制作衍生版本；
+3. 免费公开或分发原版、修改版源码及编译后二进制；
+4. 向本项目提交 Pull Request，或维护独立的免费分支。
 
 限制：
-A. 禁止收费与二次贩卖。
-不得出售原版、修改版、Fork、重新打包版本、编译产物、下载权限或访问权限。
 
-B. 禁止付费墙与付费整合包。
-不得将本项目或其衍生版本作为付费下载、订阅、会员专属内容、
+A. 禁止收费与二次贩卖
+不得出售 FreedomControl 原版、修改版、Fork、重新打包版本、编译产物、
+下载权限、访问权限或以其他方式对其本身收费。
+
+B. 禁止付费墙与付费整合包
+不得将 FreedomControl 或其衍生版本作为付费下载、订阅、会员专属内容、
 付费 Modpack / 整合包、收费服务或其他商业分发的一部分。
 
-C. 署名。
-公开再分发必须保留本许可证和原作者署名“莱茵多特”。
-修改版必须明确说明已修改，不得冒充官方原版。
+C. 署名与修改说明
+公开再分发时必须保留本许可证与原作者署名“莱茵多特”。
+修改版必须清楚说明其为修改版本，不得冒充 FreedomControl 官方原版。
 
-D. 第三方组件。
+D. 第三方内容
 本许可证仅适用于作者有权许可的 FreedomControl 原创代码和文档。
 SKSE、CommonLibSSE-NG、ImGui、fmt、spdlog、nlohmann/json、Bethesda 游戏资产
-及其他第三方内容继续遵循各自许可证与条款。
+及其他第三方内容继续遵循各自许可证、例外条款和使用条件。
 
-E. 无担保。
-本软件按“原样”提供，不附带任何明示或默示担保。
+E. 无担保
+本软件按“原样”提供，不附带任何明示或默示担保。作者不对因使用、修改或
+分发本软件造成的任何直接或间接损失承担责任。
 
-由于限制商业再分发，本许可证属于 source-available（源码公开）许可，
-并非 OSI 认证的标准 Open Source 许可证。
+English terms
+=============
 
-作者：莱茵多特
+Permission is granted, free of charge, to use, study, fork, modify, and redistribute
+FreedomControl and derivative works for non-commercial purposes, including free
+distribution of source code and compiled binaries.
+
+The following are prohibited:
+
+1. selling the original project, modified versions, forks, repackaged copies,
+   compiled binaries, download access, or access rights;
+2. placing the project or derivative works behind a paywall, subscription,
+   paid membership, paid modpack, paid bundle, or other commercial distribution;
+3. removing the original attribution or presenting a modified build as an
+   official FreedomControl release.
+
+Redistributions must retain this license and attribution to "莱茵多特".
+Modified versions must clearly state that they have been modified.
+
+Third-party software and game assets remain governed by their own licenses and terms.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+Because this license restricts commercial redistribution, it is a
+source-available license and is not an OSI-approved open-source license.
+
+Author / 作者：莱茵多特
 Bilibili：https://space.bilibili.com/1329692237

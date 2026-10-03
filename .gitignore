@@ -1,12 +1,22 @@
+# Build output
 /build/
 /dist/
 /vcpkg_installed/
 /.vs/
-/build-settings.json
-/commonlib.lock.txt
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
+out/
+
+# IDE / local configuration
+/.idea/
+/.vscode/
+/build-settings.json
+/commonlib.lock.txt
+*.user
+*.suo
+
+# Native build artifacts
 *.dll
 *.exe
 *.obj
@@ -15,11 +25,19 @@ cmake_install.cmake
 *.pdb
 *.ilk
 *.exp
-*.user
-*.suo
+
+# Local archives
+*.zip
+*.7z
+*.rar
+
+# Python cache / test cache
 __pycache__/
+.pytest_cache/
 *.pyc
 *.pyo
+
+# Logs / temporary files
 *.log
 *.tmp
 *.bak
