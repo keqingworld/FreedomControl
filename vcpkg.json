@@ -2,15 +2,39 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "freedom-control",
   "version-semver": "0.5.5",
-  "description": "Skyrim 1.6.1170 SKSE world-control plugin",
+  "description": "Experimental Skyrim 1.6.1170 SKSE world-control plugin",
   "builtin-baseline": "ee12231b20c95013c6638d845d04c91559a1d1ff",
   "dependencies": [
-    { "name": "directxmath", "version>=": "2025-04-03" },
-    { "name": "directxtk", "version>=": "2025-10-27" },
-    { "name": "fmt", "version>=": "12.1.0" },
-    { "name": "spdlog", "version>=": "1.16.0" },
-    { "name": "rapidcsv", "version>=": "8.90" },
-    { "name": "nlohmann-json", "version>=": "3.12.0" },
-    { "name": "imgui", "features": ["dx11-binding", "win32-binding"] }
+    {
+      "name": "directxmath",
+      "version>=": "2025-04-03"
+    },
+    {
+      "name": "directxtk",
+      "version>=": "2025-10-27"
+    },
+    {
+      "name": "fmt",
+      "version>=": "12.1.0"
+    },
+    {
+      "name": "spdlog",
+      "version>=": "1.16.0"
+    },
+    {
+      "name": "rapidcsv",
+      "version>=": "8.90"
+    },
+    {
+      "name": "nlohmann-json",
+      "version>=": "3.12.0"
+    },
+    {
+      "name": "imgui",
+      "features": [
+        "dx11-binding",
+        "win32-binding"
+      ]
+    }
   ]
 }

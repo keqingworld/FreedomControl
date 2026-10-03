@@ -39,11 +39,13 @@ bool Executable(const void* p) {
 }
 bool Install() {
     if(installed)return true;
+    // Only the runtime admitted in Plugin.cpp; no instruction-pattern patch and no external injector.
     if(REL::Module::get().version()!=REL::Version(1,6,1170,0))return false;
     REL::Relocation<std::uintptr_t> vtable{RE::VTABLE_PlayerCharacter[0]};
     auto** table=reinterpret_cast<void**>(vtable.address());
     constexpr std::size_t slots[]={0xB5,0xB6,0xB9,0xBA,0xBB};
     for(const auto slot:slots)if(!Executable(table[slot])) {spdlog::error("Kernel11: invalid crime vtable slot {}; hooks not installed.",slot);return false;}
+    // Preserve earlier hooks; policies remain off until the current save is ready.
     DWORD old{}; auto* begin=&table[0xB5]; constexpr auto bytes=7*sizeof(void*);
     if(!VirtualProtect(begin,bytes,PAGE_READWRITE,&old)) {spdlog::error("Kernel11: cannot protect player vtable; hooks not installed.");return false;}
     previousSet=reinterpret_cast<SetGoldFn>(table[0xB5]);previousMod=reinterpret_cast<ModGoldFn>(table[0xB6]);

@@ -1,0 +1,11 @@
+FreedomControl 0.5.2 INPUT13 完整源码包
+
+覆盖旧源码后运行 VERIFY_LATEST.bat，再运行 BUILD.bat。保留 build、现有配置和依赖。
+生成：dist/FreedomControl-0.5.2-INPUT13-MO2.zip。
+用新生成的包替换 MO2 中旧版，确认 FreedomControlRuntime.esp 仍启用。
+
+修复范围：文字 / 数字搜索、数值编辑、键盘组合键、滚轮；以及 0.5.1 审计发现的资源上限与补满冲突。
+F8 → 设置 / 诊断 → 输入自检可查看键盘、文字、滚轮计数。计数不记录输入内容。
+
+验证：F8 搜索框输入 abc123，Ctrl+A 后输入 sword；中文可粘贴；数值框输入 250；列表滚轮上下；Alt+Tab 切回后松开再按键。
+本环境只完成离线逻辑验证，未完成 Windows DLL 编译或游戏实测。

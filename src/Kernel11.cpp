@@ -32,6 +32,7 @@ void Engine::ProtectObject11(RE::TESObjectREFR* ref,bool unlock) {
 void Engine::ClearCrime11(bool allFactions) {
     auto* p=RE::PlayerCharacter::GetSingleton();if(!p)return;
     if(allFactions)if(auto* d=RE::TESDataHandler::GetSingleton())for(auto* f:d->GetFormArray<RE::TESFaction>())if(f) {
+        // Avoid forcing every unused crime faction into a player's crime map.
         if(p->GetCrimeGoldValue(f)!=0) {p->ClearAllCrimeGold(f);f->SetCrimeGold(0);f->SetCrimeGoldViolent(0);}
     }
     p->ClearArrested();p->StopAlarmOnActor();
@@ -51,6 +52,7 @@ void Engine::TickKernel11(float dt) {
     if(law11::TakeClearRequest())ClearCrime11(true);
     if(resting11_) {
         playerIntent14_.Reset();
+        // Only advance a rest session started by this plugin, never a vanilla menu's session.
         auto& info=p->GetInfoRuntimeData();
         const auto before=info.sleepSeconds;
         for(int i=0;i<8&&info.sleepSeconds;++i)p->AdvanceSleepWaitTick();
@@ -60,6 +62,8 @@ void Engine::TickKernel11(float dt) {
     }
     const bool ownMenu=menuOpen_.load()||inputBlocked_||pauseLease_.Held();
     const bool suspended=std::chrono::steady_clock::now()<suspendUntil11_;
+    // Item/modal/application menus may be configured to run without pausing.
+    // Leave their controls alone. Dialogue itself needs the scoped decision.
     const bool nativeMenu=ui&&!dialogue&&(ui->IsItemMenuOpen()||ui->IsModalMenuOpen()||ui->IsApplicationMenuOpen());
     bool protectedDialogue=dialogue;
     if(!ownMenu&&!nativeMenu&&!suspended)protectedDialogue=TickPlayerFreedom14(dialogue);
@@ -82,12 +86,14 @@ void Engine::TickKernel11(float dt) {
             if(rules11_.playerFreedom14||(rules11_.controlMask&1u))d.boolFlags.reset(RE::Actor::BOOL_FLAGS::kMovementBlocked);
             if(rules11_.playerFreedom14||(rules11_.controlMask&(1u<<6))) {d.boolFlags.reset(RE::Actor::BOOL_FLAGS::kAttackingDisabled);d.boolFlags.reset(RE::Actor::BOOL_FLAGS::kCastingDisabled);}
             if(rules11_.playerFreedom14||(rules11_.controlMask&(1u<<1)))d.boolBits.reset(RE::Actor::BOOL_BITS::kHeadingFixed);
-            if(rules11_.playerFreedom14 && p->GetLifeState()==RE::ACTOR_LIFE_STATE::kRestrained)p->SetLifeState(RE::ACTOR_LIFE_STATE::kAlive);
+            if(rules11_.playerFreedom14 && p->GetLifeState()==RE::ACTOR_LIFE_STATE::kRestrained)
+                p->SetLifeState(RE::ACTOR_LIFE_STATE::kAlive);
         }
         sceneTimer11_+=dt;
         if(sceneTimer11_>=0.4f) {
             sceneTimer11_=0;
             if(rules11_.breakScenes&&!protectedDialogue&&p->GetCurrentScene()) {
+                // Explicit aggressive switch. It affects the player's scene, not all NPC scenes.
                 p->StopCurrentDialogue();p->SetCurrentScene(nullptr);
                 p->GetActorRuntimeData().boolFlags.reset(RE::Actor::BOOL_FLAGS::kScenePackage);
                 if(p->GetActorRuntimeData().currentProcess)p->EndInterruptPackage(false);
@@ -120,14 +126,16 @@ void Engine::MaintainKernel11(float dt,const std::vector<ID>& actors) {
         const bool crime=rd.boolFlags.any(RE::Actor::BOOL_FLAGS::kCrimeSearch)||rd.boolFlags.any(RE::Actor::BOOL_FLAGS::kAngryWithPlayer);
         const bool greeting=rd.boolBits.any(RE::Actor::BOOL_BITS::kForceGreetingPlayer);
         const bool hostileToUs=target && (target.get()==p||IsLegionFriendly(target.get()));
-        if(!crime&&!hostileToUs)continue;
-        a->StopAlarmOnActor();if(hostileToUs)a->StopCombat();
+        if(!crime&&!hostileToUs)continue; // normal voluntary guard dialogue remains available
+        a->StopAlarmOnActor();
+        if(hostileToUs)a->StopCombat();
         rd.boolFlags.reset(RE::Actor::BOOL_FLAGS::kAngryWithPlayer);rd.boolFlags.reset(RE::Actor::BOOL_FLAGS::kCrimeSearch);
         rd.boolBits.reset(RE::Actor::BOOL_BITS::kAttackOnNextTheft);
         if(greeting) {a->StopCurrentDialogue();a->EndInterruptPackage(false);rd.boolBits.reset(RE::Actor::BOOL_BITS::kForceGreetingPlayer);}
         ++guardReleases11_;dirty_=true;
     }
     if(rules11_.protectClaims) {
+        // Time-sliced reference checks; never rescan the whole game or reactivate deleted references.
         for(int i=0,n=static_cast<int>(std::min<std::size_t>(ownRing11_.size(),32));i<n;++i) {
             ID id=ownRing11_.front();ownRing11_.pop_front();auto it=ownRules11_.find(id);if(it==ownRules11_.end())continue;
             ownRing11_.push_back(id);auto* r=Ref(id);
