@@ -1,0 +1,12 @@
+/build/
+/dist/
+/vcpkg_installed/
+/build.log
+/commonlib.lock.txt
+/.vs/
+/build-settings.json
+*.pdb
+*.obj
+*.ilk
+*.user
+*.suo
